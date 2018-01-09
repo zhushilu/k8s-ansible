@@ -22,7 +22,7 @@
 1. calico/node	v2.6.5
 1. flannel	v0.9.1
 
-+ 附：集群用到的所有二进制文件已打包好供下载 [https://pan.baidu.com/s/1c4RFaA](https://pan.baidu.com/s/1c4RFaA)
++ 附：集群用到的所有二进制文件已打包好供下载 [https://s.zhusl.com/k8s/k8s.191.tar.gz](https://s.zhusl.com/k8s/k8s.191.tar.gz)
 
 
 ## 快速指南
