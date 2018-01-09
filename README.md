@@ -12,7 +12,7 @@
 
 你可能需要掌握基本`kubernetes` `docker` `linux shell` 知识，关于`ansible`建议阅读 [ansible超快入门](http://weiweidefeng.blog.51cto.com/1957995/1895261) 基本够用。
 
-请阅读[项目分支说明](branch.md)，欢迎提`Issues`和`PRs`参与维护项目。
+
 
 ## 组件版本
 
@@ -23,7 +23,7 @@
 1. flannel	v0.9.1
 
 + 附：集群用到的所有二进制文件已打包好供下载 [https://pan.baidu.com/s/1c4RFaA](https://pan.baidu.com/s/1c4RFaA)
-+ 注：`Kubernetes v1.8.x` 版本请切换到项目分支 `v1.8`, 若你需要从v1.8 升级至 v1.9，请参考 [升级注意](docs/upgrade.md)
+
 
 ## 快速指南
 
