@@ -58,6 +58,16 @@
   when: ansible_distribution == "CentOS"
   ignore_errors: true
 
+# 安装一些需要的工具包
+- name: Install Redhat Packages 
+  when: ansible_distribution == "CentOS"
+  yum: pkg={{ item }} state=present
+  with_items:
+    - unzip
+    - ipvsadm
+    - nfs-utils
+
+
 # 设置系统参数for k8s
 # 消除docker info 警告WARNING: bridge-nf-call-ip[6]tables is disabled
 - name: 设置系统参数

@@ -11,6 +11,11 @@ ExecStart={{ bin_dir }}/kube-proxy \
   --bind-address={{ NODE_IP }} \
   --hostname-override={{ NODE_IP }} \
   --kubeconfig=/etc/kubernetes/kube-proxy.kubeconfig \
+  --masquerade-all \
+  --proxy-mode=ipvs \
+  --ipvs-min-sync-period=5s \
+  --ipvs-sync-period=5s \
+  --ipvs-scheduler=rr \
   --logtostderr=true \
   --v=2
 Restart=on-failure

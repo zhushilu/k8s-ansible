@@ -4,7 +4,7 @@ Documentation=http://docs.docker.io
 
 [Service]
 Environment="PATH={{ bin_dir }}:/bin:/sbin:/usr/bin:/usr/sbin"
-ExecStart={{ bin_dir }}/dockerd --log-level=error 
+ExecStart={{ bin_dir }}/dockerd --log-level=error   --log-opt max-size=50m --log-opt max-file=5 
 ExecStartPost=/sbin/iptables -I FORWARD -s 0.0.0.0/0 -j ACCEPT
 ExecReload=/bin/kill -s HUP $MAINPID
 Restart=on-failure
@@ -14,6 +14,7 @@ LimitNPROC=infinity
 LimitCORE=infinity
 Delegate=yes
 KillMode=process
+MountFlags=slave
 
 [Install]
 WantedBy=multi-user.target
