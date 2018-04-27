@@ -1,3 +1,5 @@
+# 原作者地址：[https://github.com/gjmzj/kubeasz](https://github.com/gjmzj/kubeasz)
+
 # 利用Ansible部署kubernetes集群
 
 本系列文档致力于提供快速部署高可用`k8s`集群的工具，并且也努力成为`k8s`实践、使用的参考书；基于二进制方式部署和利用`ansible-playbook`实现自动化：既提供一键安装脚本，也可以分步执行安装各个组件，同时讲解每一步主要参数配置和注意事项；二进制方式部署有助于理解系统各组件的交互原理和熟悉组件启动参数，有助于快速排查解决实际问题。
@@ -14,7 +16,7 @@
 
 ## 组件版本
 
-1. kubernetes	v1.9.1
+1. kubernetes	v1.9.x
 1. etcd		v3.2.13
 1. docker	17.12.0-ce
 1. calico/node	v2.6.5
