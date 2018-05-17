@@ -38,6 +38,8 @@
     - "/etc/systemd/system/kube-scheduler.service"
     - "/etc/kubernetes/"
     - "/var/log/kube"
+    - "/root/local/kube-system"
+    - "/var/lib/cni/"
 
 - hosts:
   - kube-cluster
