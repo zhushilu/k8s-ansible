@@ -24,6 +24,9 @@
 - name: 创建 basic-auth.csv
   template: src=basic-auth.csv.j2 dest={{ ca_dir }}/basic-auth.csv
 
+- name: 创建 audit-policy.yaml
+  template: src=audit-policy.yaml.j2 dest={{ ca_dir }}/audit-policy.yaml
+
 - name: 创建kube-apiserver的systemd unit文件
   template: src=kube-apiserver.service.j2 dest=/etc/systemd/system/kube-apiserver.service
 
