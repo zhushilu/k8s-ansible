@@ -23,9 +23,10 @@ ExecStart={{ bin_dir }}/kubelet \
   --hairpin-mode promiscuous-bridge  \
   --allow-privileged=true \
   --fail-swap-on=false \
-  --logtostderr=true \
+  --log-dir=/var/log/kube \
+  --logtostderr=false  \
   --v=2  \
-   --rotate-certificates  
+  --rotate-certificates
 #kubelet cAdvisor 默认在所有接口监听 4194 端口的请求, 以下iptables限制内网访问
 ExecStartPost=/sbin/iptables -A INPUT -s 10.0.0.0/8 -p tcp --dport 4194 -j ACCEPT
 ExecStartPost=/sbin/iptables -A INPUT -s 172.16.0.0/12 -p tcp --dport 4194 -j ACCEPT

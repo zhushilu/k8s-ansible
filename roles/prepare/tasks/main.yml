@@ -5,6 +5,7 @@
   - "{{ ca_dir }}"
   - /root/.kube
   - /etc/docker
+  - /var/log/kube
 
 #- name: 集群hosts文件更新
 #  copy: src=hosts.j2 dest=/etc/hosts

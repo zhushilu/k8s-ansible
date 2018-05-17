@@ -15,13 +15,15 @@ ExecStart={{ bin_dir }}/kube-controller-manager \
   --service-account-private-key-file={{ ca_dir }}/ca-key.pem \
   --root-ca-file={{ ca_dir }}/ca.pem \
   --horizontal-pod-autoscaler-use-rest-clients=false \
+  --feature-gates=RotateKubeletServerCertificate=true \
+  --experimental-cluster-signing-duration=86700h0m0s \
+  --node-monitor-grace-period=40s \
+  --node-monitor-period=5s \
+  --pod-eviction-timeout=2m0s \
   --leader-elect=true \
   --v=2  \
---feature-gates=RotateKubeletServerCertificate=true \
---experimental-cluster-signing-duration=86700h0m0s \
---node-monitor-grace-period=40s \
---node-monitor-period=5s \
---pod-eviction-timeout=2m0s 
+  --log-dir=/var/log/kube \
+  --logtostderr=false
 Restart=on-failure
 RestartSec=5
 
