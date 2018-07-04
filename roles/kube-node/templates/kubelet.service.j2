@@ -24,7 +24,7 @@ ExecStart={{ bin_dir }}/kubelet \
   --allow-privileged=true \
   --fail-swap-on=false \
   --log-dir=/var/log/kube \
-  --logtostderr=true  \
+  --logtostderr=false  \
   --v=2  \
   --rotate-certificates
 #kubelet cAdvisor 默认在所有接口监听 4194 端口的请求, 以下iptables限制内网访问
