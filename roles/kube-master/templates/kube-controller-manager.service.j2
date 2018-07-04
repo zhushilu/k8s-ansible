@@ -23,7 +23,7 @@ ExecStart={{ bin_dir }}/kube-controller-manager \
   --leader-elect=true \
   --v=2  \
   --log-dir=/var/log/kube \
-  --logtostderr=true
+  --logtostderr=false
 Restart=on-failure
 RestartSec=5
 
