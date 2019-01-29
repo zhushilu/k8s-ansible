@@ -7,6 +7,7 @@
   - flannel
   - kube-node
 
+# 增加了node节点证书的自动颁发，所以不需要执行这些操作了
 #- hosts: deploy
 #  tasks:
 #  - name: 批准新增node节点
