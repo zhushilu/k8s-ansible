@@ -83,6 +83,7 @@
     shell: "ip link del docker0; \
 	ip link del tunl0; \
 	ip link del flannel.1; \
+	ip link del dummy0; \
 	ip link del cni0; \
         ip link del mynet0; \
 	systemctl restart networking; \
