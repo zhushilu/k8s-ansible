@@ -43,6 +43,11 @@
 # node 节点部署
 - hosts: kube-node
   roles:
+  - kube-bootstrap
+
+# node 节点部署
+- hosts: kube-node
+  roles:
   - kube-node
 
 # 集群网络插件部署，只能选择一种安装
