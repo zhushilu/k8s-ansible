@@ -16,8 +16,8 @@
         -config={{ ca_dir }}/ca-config.json \
         -profile=kubernetes kubernetes-csr.json | {{ bin_dir }}/cfssljson -bare kubernetes"
 
-#- name: 创建 token.csv
-#  template: src=token.csv.j2 dest={{ ca_dir }}/token.csv
+- name: 创建 token.csv
+  template: src=token.csv.j2 dest={{ ca_dir }}/token.csv
 
 # 创建aggregator proxy相关证书
 - name: 创建 aggregator proxy证书签名请求
