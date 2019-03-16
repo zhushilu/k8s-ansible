@@ -47,31 +47,31 @@
 
 
 
-- block:
-    - name: 导入GPG key
-      rpm_key:
-        state: present
-        key: https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+#- block:
+#    - name: 导入GPG key
+#      rpm_key:
+#        state: present
+#        key: https://www.elrepo.org/RPM-GPG-KEY-elrepo.org
+#
+#    - name: 导入elrepo
+#      yum:
+#        name: http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
+#        state: present
+#
+#    - name: 升级到最新内核
+#      yum:
+#        name:
+#          - kernel-ml
+#          - kernel-ml-devel
+#        disablerepo: "*"
+#        enablerepo: "elrepo-kernel"
+#      tags:
+#        - kernel
 
-    - name: 导入elrepo
-      yum:
-        name: http://www.elrepo.org/elrepo-release-7.0-3.el7.elrepo.noarch.rpm
-        state: present
+#    - name: 修改默认启动内核到新内核
+#      shell: grub2-set-default  0 && grub2-mkconfig -o /etc/grub2.cfg
+#  when: kernel != 'false'
 
-    - name: 升级到最新内核
-      yum:
-        name:
-          - kernel-ml
-          - kernel-ml-devel
-        disablerepo: "*"
-        enablerepo: "elrepo-kernel"
-      tags:
-        - kernel
-
-    - name: 修改默认启动内核到新内核
-      shell: grub2-set-default  0 && grub2-mkconfig -o /etc/grub2.cfg
-  when: kernel != 'false'
-
-- name: 设置内核参数适应docker
-  shell: |
-    grubby --args="user_namespace.enable=1" --update-kernel=$(grubby --default-kernel)
+#- name: 设置内核参数适应docker
+#  shell: |
+#    grubby --args="user_namespace.enable=1" --update-kernel=$(grubby --default-kernel)
