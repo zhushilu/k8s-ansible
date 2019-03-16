@@ -30,6 +30,7 @@
 # 安装ansible（ubuntu换成apt-get即可）
 yum install python-pip
 pip install ansible
+# pip install ansible -i https://pypi.tuna.tsinghua.edu.cn/simple
 
 # git clone 
 cd /etc/ansible  # 没有可以手动创建
