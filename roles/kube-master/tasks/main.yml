@@ -4,10 +4,13 @@
   - kube-apiserver
   - kube-controller-manager
   - kube-scheduler
-  - kubectl
 
 - name: 创建 kubernetes 证书签名请求
   template: src=kubernetes-csr.json.j2 dest={{ ca_dir }}/kubernetes-csr.json
+
+- name: 创建 kube-apiserver 安全端口连接 kubelet 证书签名请求
+  template: src=kubelet-api-admin-csr.json.j2 dest={{ ca_dir }}/kubelet-api-admin-csr.json
+
 
 - name: 创建 kubernetes 证书和私钥
   shell: "cd {{ ca_dir }} && {{ bin_dir }}/cfssl gencert \
@@ -15,6 +18,13 @@
         -ca-key={{ ca_dir }}/ca-key.pem \
         -config={{ ca_dir }}/ca-config.json \
         -profile=kubernetes kubernetes-csr.json | {{ bin_dir }}/cfssljson -bare kubernetes"
+
+- name: 创建 kube-apiserver 连接 kubelet 证书和私钥
+  shell: "cd {{ ca_dir }} && {{ bin_dir }}/cfssl gencert \
+        -ca={{ ca_dir }}/ca.pem \
+        -ca-key={{ ca_dir }}/ca-key.pem \
+        -config={{ ca_dir }}/ca-config.json \
+        -profile=kubernetes kubelet-api-admin-csr.json | {{ bin_dir }}/cfssljson -bare kubelet-api-admin"
 
 - name: 创建 token.csv
   template: src=token.csv.j2 dest={{ ca_dir }}/token.csv
