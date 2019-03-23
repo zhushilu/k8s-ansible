@@ -2,7 +2,7 @@
 - name: 创建 bin 目录
   file: name={{ item }} state=directory
   with_items:
-  - {{ bin_dir }}
+  - "{{ bin_dir }}"
 
 
 - name: 下载helm客户端
