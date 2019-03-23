@@ -38,8 +38,9 @@
     - "/etc/systemd/system/kube-scheduler.service"
     - "/etc/kubernetes/"
     - "/var/log/kube"
-    - "/root/local/kube-system"
+    - "/root/local"
     - "/var/lib/cni/"
+    ignore_errors: true
 
 - hosts:
   - kube-cluster
@@ -54,9 +55,11 @@
   # 卸载 /var/run/docker/netns/default
   - name: 卸载docker 相关fs1
     mount: path=/var/run/docker/netns/default state=unmounted
+    ignore_errors: true
 
   - name: 卸载docker 相关fs2
     mount: path=/var/lib/docker/overlay state=unmounted
+    ignore_errors: true
 
   - name: 清理目录和文件
     file: name={{ item }} state=absent
@@ -72,12 +75,14 @@
     - "/etc/systemd/system/calico-node.service"
     - "/etc/systemd/system/docker.service"
     - "/etc/systemd/system/docker.service.requires/"
+    ignore_errors: true
 
   - name: 清理 iptables
     shell: "iptables -F && iptables -X \
 	&& iptables -F -t nat && iptables -X -t nat \
 	&& iptables -F -t raw && iptables -X -t raw \
 	&& iptables -F -t mangle && iptables -X -t mangle"
+    ignore_errors: true
 
   - name: 清理网络
     shell: "ip link del docker0; \
@@ -85,6 +90,7 @@
 	ip link del flannel.1; \
 	ip link del dummy0; \
 	ip link del cni0; \
+	 ip link del kube-ipvs0; \
         ip link del mynet0; \
 	systemctl restart networking; \
 	systemctl restart network"
@@ -102,6 +108,7 @@
     - "/var/lib/etcd"
     - "/etc/etcd/"
     - "/etc/systemd/system/etcd.service"
+    ignore_errors: true
 
 - hosts: lb
   tasks:

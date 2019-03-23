@@ -1,5 +1,6 @@
 {
-  "CN": "kubernetes",
+  "CN": "{{ helm_cert_cn }}",
+  "hosts": [],
   "key": {
     "algo": "rsa",
     "size": 2048
@@ -12,8 +13,5 @@
       "O": "k8s",
       "OU": "System"
     }
-  ],
-  "ca": {
-    "expiry": "131400h"
-  }
+  ]
 }

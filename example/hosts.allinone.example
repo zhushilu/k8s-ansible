@@ -18,9 +18,6 @@
 kube-node
 kube-master
 
-# 如果启用harbor，请配置后面harbor相关参数
-[harbor]
-#192.168.1.8 NODE_IP="192.168.1.8"
 
 # 预留组，后续添加node节点使用
 [new-node]
@@ -90,6 +87,3 @@ ca_dir="/etc/kubernetes/ssl"
 #部署目录，即 ansible 工作目录
 base_dir="/etc/ansible"
 
-#私有仓库 harbor服务器 (域名或者IP)
-#HARBOR_IP="192.168.1.8"
-#HARBOR_DOMAIN="harbor.yourdomain.com"

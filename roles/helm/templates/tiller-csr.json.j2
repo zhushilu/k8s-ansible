@@ -1,10 +1,6 @@
 {
-  "CN": "harbor",
-  "hosts": [
-    "127.0.0.1",
-    "{{ NODE_IP }}",
-    "{{ HARBOR_DOMAIN }}"
-  ],
+  "CN": "{{ tiller_cert_cn }}",
+  "hosts": [],
   "key": {
     "algo": "rsa",
     "size": 2048

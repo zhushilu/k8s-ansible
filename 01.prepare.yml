@@ -1,5 +1,6 @@
 # 在deploy节点生成CA相关证书，以及kubedns.yaml配置文件
 - hosts: deploy
+  gather_facts: True
   roles:
   - deploy
 
@@ -9,6 +10,7 @@
   - deploy
   - etcd
   - lb
+  gather_facts: True
   roles:
   - prepare
 
