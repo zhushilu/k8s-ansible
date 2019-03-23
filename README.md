@@ -5,23 +5,19 @@
 
 ## 组件版本
 
-1. kubernetes	v1.10.1
+1. kubernetes	v1.13.x
 1. etcd		v3.x.xx
 1. docker	18.xx.0-ce
 1. flannel	>v0.9.1
 
-目前测试兼容版本：v1.10.x  v1.11.x
+兼容版本：v1.13.x
 安装包下载地址：
-- https://st.zhusl.com/k8s/k8s.1-10-4.tar.gz
-- https://st.zhusl.com/k8s/k8s.1-11-6.tar.gz
-
-## 快速指南
-
-单机快速体验k8s集群的测试、开发环境--[AllinOne部署](docs/quickStart.md)；在国内的网络环境下要比官方的minikube方便、简单很多。
+- https://st.zhusl.com/k8s/k8s.1-13-2.tar.gz
 
 ## 使用指南
 
-在原基础上修改了部分参数，修改了针对1.10版本一些启动参数的变化，增加了kubelet证书的自动签发和续签功能。
+在原基础上修改了部分参数，修改了针对1.13版本一些启动参数的变化，增加了kubelet证书的client证书自动签发。
+配置api-server和调用kubelet时通过安全端口连接
 增加了docker的参数优化。
 
 ## 详细安装命令
