@@ -5,6 +5,7 @@
   - /var/lib/kubelet
   - /var/lib/kube-proxy
   - /etc/cni/net.d
+  - /etc/nginx
 
 - name: 下载 kubelet,kube-proxy 二进制和基础 cni plugins
   copy: src={{ base_dir }}/bin/{{ item }} dest={{ bin_dir }}/{{ item }} mode=0755
@@ -15,12 +16,22 @@
   - host-local
   - loopback
 
+- name: 创建nginx的配置文件
+  template: src={{ base_dir }}/roles/prepare/conf/nginx.conf dest=/etc/nginx/nginx.conf
+
+- name: 创建nginx的systemd unit文件
+  template: src=nginx.service.j2 dest=/etc/systemd/system/nginx.service
+
+- name: 开启nginx 代理服务
+  shell: systemctl daemon-reload && systemctl enable nginx && systemctl restart nginx
+
+
 #创建bootstrap.kubeconfig配置文件
 - name: 设置集群参数
   shell: "{{ bin_dir }}/kubectl config set-cluster kubernetes \
         --certificate-authority={{ ca_dir }}/ca.pem \
         --embed-certs=true \
-        --server={{ KUBE_APISERVER }} \
+        --server=https://127.0.0.1:8443 \
         --kubeconfig=bootstrap.kubeconfig"
 - name: 设置客户端认证参数
   shell: "{{ bin_dir }}/kubectl config set-credentials kubelet-bootstrap \
@@ -69,7 +80,7 @@
   shell: "{{ bin_dir }}/kubectl config set-cluster kubernetes \
         --certificate-authority={{ ca_dir }}/ca.pem \
         --embed-certs=true \
-        --server={{ KUBE_APISERVER }} \
+        --server=https://127.0.0.1:8443 \
         --kubeconfig=kube-proxy.kubeconfig"
 - name: 设置客户端认证参数
   shell: "{{ bin_dir }}/kubectl config set-credentials kube-proxy \

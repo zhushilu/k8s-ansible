@@ -4,6 +4,7 @@
   - "{{ bin_dir }}"
   - "{{ ca_dir }}"
   - "{{ base_dir }}/roles/prepare/files/"
+  - "{{ base_dir }}/roles/prepare/conf/"
 #  - "{{ base_dir }}/manifests/kubedns/"
 
 - name: 下载证书工具 CFSSL
@@ -39,6 +40,12 @@
   - ca-key.pem
   - ca.csr
   - ca-config.json
+
+# 生成kubelet对master节点反向代理的配置文件
+- name: 准备 nginx.conf 配置文件
+  template: src=nginx.conf.j2 dest={{ base_dir }}/roles/prepare/conf/nginx.conf
+
+
 
 # kubedns.yaml文件中部分参数根据hosts文件设置而定，因此需要用template模块替换参数
 #- name: 准备 kubedns的部署文件 kubedns.yaml
