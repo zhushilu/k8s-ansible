@@ -21,6 +21,8 @@
     - "/etc/kubernetes/"
     - "/etc/systemd/system/kubelet.service"
     - "/etc/systemd/system/kube-proxy.service"
+    - "/etc/systemd/system/nginx.service"
+    - "/etc/nginx/nginx.conf"
    # - "/root/local/bin/"
 
 - hosts: kube-master
