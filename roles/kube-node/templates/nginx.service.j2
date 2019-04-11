@@ -6,7 +6,7 @@ After=docker.service
 [Service]
 User=root
 PermissionsStartOnly=true
-ExecStart={{ bin_dir }}/docker run -p  \
+ExecStart={{ bin_dir }}/docker run  \
                               -v /etc/nginx:/etc/nginx \
                               --name nginx-proxy \
                               --net=host \
