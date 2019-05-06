@@ -4,6 +4,9 @@
     "127.0.0.1",
     "{{ MASTER_IP }}",
     "{{ NODE_IP }}",
+    {% for host in groups['kube-master'] %}
+    "{{ host }}",
+     {% endfor %}
     "{{ CLUSTER_KUBERNETES_SVC_IP }}",
     "localhost",
     "kubernetes",
