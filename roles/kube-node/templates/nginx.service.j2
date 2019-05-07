@@ -13,7 +13,8 @@ ExecStart={{ bin_dir }}/docker run  \
                               --restart=on-failure:5 \
                               --memory=512M \
                               nginx:1.14.2-alpine
-ExecStartPre=-{{ bin_dir }}/docker rm -f nginx-proxy
+ExecStartPre=-{{ bin_dir }}/docker rm nginx-proxy
+ExecStartPre=-/usr/bin/killall nginx
 ExecStop={{ bin_dir }}/docker stop nginx-proxy
 Restart=always
 RestartSec=15s

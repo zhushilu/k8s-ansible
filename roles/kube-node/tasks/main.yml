@@ -25,6 +25,13 @@
 - name: 开启nginx 代理服务
   shell: systemctl daemon-reload && systemctl enable nginx && systemctl restart nginx
 
+- name: 轮询等待nginx代理启动完成
+  shell: "systemctl status nginx.service|grep Active"
+  register: nginx_status
+  until: '"running" in nginx_status.stdout'
+  retries: 8
+  delay: 2
+
 
 #创建bootstrap.kubeconfig配置文件
 - name: 设置集群参数
