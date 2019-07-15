@@ -45,6 +45,7 @@
 # node 节点部署
 - hosts: kube-node
   roles:
+  - kube-nginx
   - kube-bootstrap
 
 # node 节点部署
