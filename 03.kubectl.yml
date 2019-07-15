@@ -3,3 +3,4 @@
   - deploy
   roles:
   - kubectl
+  - kube-nginx

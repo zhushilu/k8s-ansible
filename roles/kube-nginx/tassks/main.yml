@@ -1,0 +1,33 @@
+# 创建nginx配置目录
+- name: 创建kube-nginx 相关目录
+  file: name={{ item }} state=directory
+  with_items:
+  - /etc/nginx
+
+- name: 创建nginx的配置文件
+  template: src={{ base_dir }}/roles/prepare/conf/nginx.conf dest=/etc/nginx/nginx.conf
+
+- name: 创建nginx的systemd unit文件
+  template: src=nginx.service.j2 dest=/etc/systemd/system/nginx.service
+
+- name: 开启nginx 代理服务
+  shell: systemctl daemon-reload && systemctl enable nginx && systemctl restart nginx
+
+- name: 轮询等待nginx代理启动完成
+  shell: "systemctl status nginx.service|grep Active"
+  register: nginx_status
+  until: '"running" in nginx_status.stdout'
+  retries: 8
+  delay: 10
+
+
+- name: 轮询等待nginx启动完成
+  shell: "netstat -lnpt "
+  register: port_listen
+  until: '"nginx" in port_listen.stdout'
+  retries: 8
+  delay: 10
+
+
+- name: sleep 5
+  shell: "sleep 5"

@@ -1,8 +1,11 @@
 - hosts: new-node
+  gather_facts: True
   roles:
   - prepare
   - kubectl
   - docker
+  - kube-nginx
+  - kube-bootstrap
 #  - calico
   - flannel
   - kube-node

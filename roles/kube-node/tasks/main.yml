@@ -5,7 +5,6 @@
   - /var/lib/kubelet
   - /var/lib/kube-proxy
   - /etc/cni/net.d
-  - /etc/nginx
 
 - name: 下载 kubelet,kube-proxy 二进制和基础 cni plugins
   copy: src={{ base_dir }}/bin/{{ item }} dest={{ bin_dir }}/{{ item }} mode=0755
@@ -15,22 +14,6 @@
   - bridge
   - host-local
   - loopback
-
-- name: 创建nginx的配置文件
-  template: src={{ base_dir }}/roles/prepare/conf/nginx.conf dest=/etc/nginx/nginx.conf
-
-- name: 创建nginx的systemd unit文件
-  template: src=nginx.service.j2 dest=/etc/systemd/system/nginx.service
-
-- name: 开启nginx 代理服务
-  shell: systemctl daemon-reload && systemctl enable nginx && systemctl restart nginx
-
-- name: 轮询等待nginx代理启动完成
-  shell: "systemctl status nginx.service|grep Active"
-  register: nginx_status
-  until: '"running" in nginx_status.stdout'
-  retries: 8
-  delay: 2
 
 
 #创建bootstrap.kubeconfig配置文件
